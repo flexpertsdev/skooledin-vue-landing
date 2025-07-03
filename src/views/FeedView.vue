@@ -1,4 +1,9 @@
 <script setup>
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+const goBack = () => router.push('/dashboard')
+
 const posts = [
   {
     id: 1,
@@ -31,8 +36,24 @@ const posts = [
 </script>
 
 <template>
-  <div class="p-4 space-y-4 max-w-2xl mx-auto">
-    <h2 class="text-2xl font-bold mb-4">Your Feed</h2>
+  <div class="min-h-screen bg-base-100">
+    <!-- Navigation Header -->
+    <div class="navbar bg-base-100 shadow-sm border-b border-base-300 sticky top-0 z-50">
+      <div class="navbar-start">
+        <button @click="goBack" class="btn btn-ghost btn-circle">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+      </div>
+      <div class="navbar-center">
+        <a class="btn btn-ghost text-xl">Feed</a>
+      </div>
+      <div class="navbar-end"></div>
+    </div>
+    
+    <!-- Content -->
+    <div class="p-4 space-y-4 max-w-2xl mx-auto">
     
     <!-- Post Card -->
     <div v-for="post in posts" :key="post.id" class="card bg-base-200 shadow-md">
@@ -69,6 +90,7 @@ const posts = [
           </div>
         </div>
       </div>
+    </div>
     </div>
   </div>
 </template>

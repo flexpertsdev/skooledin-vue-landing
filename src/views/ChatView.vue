@@ -1,5 +1,9 @@
 <script setup>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+const goBack = () => router.push('/dashboard')
 
 const messages = ref([
   {
@@ -56,13 +60,23 @@ const sendMessage = () => {
 </script>
 
 <template>
-  <div class="flex flex-col h-full">
-    <!-- Chat Header -->
-    <div class="p-4 border-b border-base-300">
-      <h2 class="text-xl font-bold flex items-center gap-2">
-        <span class="text-2xl">🤖</span>
-        AI Study Assistant
-      </h2>
+  <div class="flex flex-col h-screen bg-base-100">
+    <!-- Navigation Header -->
+    <div class="navbar bg-base-100 shadow-sm border-b border-base-300">
+      <div class="navbar-start">
+        <button @click="goBack" class="btn btn-ghost btn-circle">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+      </div>
+      <div class="navbar-center">
+        <a class="btn btn-ghost text-xl">
+          <span class="text-2xl mr-2">🤖</span>
+          AI Assistant
+        </a>
+      </div>
+      <div class="navbar-end"></div>
     </div>
     
     <!-- Messages Area -->

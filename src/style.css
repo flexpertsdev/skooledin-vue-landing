@@ -1,2 +1,226 @@
 @import "tailwindcss";
-@plugin "daisyui";
+
+/* DaisyUI-compatible custom theme */
+@theme {
+  --color-primary: #9333ea;
+  --color-secondary: #ec4899;
+  --color-accent: #3b82f6;
+  --color-neutral: #1f2937;
+  --color-base-100: #ffffff;
+  --color-base-200: #f3f4f6;
+  --color-base-300: #e5e7eb;
+  --color-base-content: #1f2937;
+}
+
+/* daisyUI component styles */
+.btn {
+  @apply inline-flex items-center justify-center px-4 py-2 font-medium rounded-lg transition-all;
+}
+
+.btn-primary {
+  @apply bg-primary text-white hover:bg-purple-700;
+}
+
+.btn-secondary {
+  @apply bg-secondary text-white hover:bg-pink-700;
+}
+
+.btn-ghost {
+  @apply bg-transparent hover:bg-gray-100;
+}
+
+.btn-outline {
+  @apply border-2 border-gray-300 hover:bg-gray-100;
+}
+
+.btn-circle {
+  @apply rounded-full w-10 h-10 p-0;
+}
+
+.btn-sm {
+  @apply text-sm px-3 py-1.5;
+}
+
+.btn-lg {
+  @apply text-lg px-6 py-3;
+}
+
+.card {
+  @apply rounded-lg;
+}
+
+.card-body {
+  @apply p-6;
+}
+
+.card-title {
+  @apply text-xl font-semibold mb-2;
+}
+
+.card-actions {
+  @apply flex gap-2;
+}
+
+.navbar {
+  @apply flex items-center px-4 py-2 min-h-[4rem];
+}
+
+.navbar-start {
+  @apply flex-1 flex items-center justify-start;
+}
+
+.navbar-center {
+  @apply flex items-center justify-center;
+}
+
+.navbar-end {
+  @apply flex-1 flex items-center justify-end;
+}
+
+.hero {
+  @apply flex items-center justify-center;
+}
+
+.hero-content {
+  @apply flex flex-col items-center text-center p-4;
+}
+
+.input {
+  @apply w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2;
+}
+
+.input-bordered {
+  @apply border-gray-300 focus:border-primary focus:ring-primary;
+}
+
+.form-control {
+  @apply flex flex-col gap-2;
+}
+
+.label {
+  @apply flex items-center justify-between;
+}
+
+.label-text {
+  @apply text-sm font-medium;
+}
+
+.divider {
+  @apply flex items-center gap-4 my-4 text-gray-400 before:flex-1 before:h-px before:bg-gray-300 after:flex-1 after:h-px after:bg-gray-300;
+}
+
+.link {
+  @apply text-primary hover:underline cursor-pointer;
+}
+
+.link-hover:hover {
+  @apply underline;
+}
+
+.dropdown {
+  @apply relative;
+}
+
+.dropdown-content {
+  @apply absolute top-full left-0 mt-2 bg-white rounded-lg shadow-lg;
+}
+
+.menu {
+  @apply flex flex-col;
+}
+
+.menu li {
+  @apply list-none;
+}
+
+.menu li a {
+  @apply block px-4 py-2 hover:bg-gray-100 rounded;
+}
+
+.badge {
+  @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+}
+
+.badge-primary {
+  @apply bg-primary text-white;
+}
+
+.badge-secondary {
+  @apply bg-secondary text-white;
+}
+
+.badge-accent {
+  @apply bg-accent text-white;
+}
+
+.badge-lg {
+  @apply px-4 py-2 text-base;
+}
+
+.modal {
+  @apply fixed inset-0 z-50 flex items-center justify-center;
+}
+
+.modal-open {
+  @apply bg-black/50;
+}
+
+.modal-box {
+  @apply bg-white rounded-lg p-6 max-w-md w-full m-4;
+}
+
+.modal-action {
+  @apply flex justify-end gap-2 mt-4;
+}
+
+.chat {
+  @apply flex flex-col gap-2;
+}
+
+.chat-start {
+  @apply items-start;
+}
+
+.chat-end {
+  @apply items-end;
+}
+
+.chat-bubble {
+  @apply px-4 py-2 rounded-lg max-w-xs;
+}
+
+.chat-bubble-primary {
+  @apply bg-primary text-white;
+}
+
+.chat-header {
+  @apply text-sm text-gray-500;
+}
+
+.footer {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8;
+}
+
+.footer-title {
+  @apply font-bold mb-2;
+}
+
+.textarea {
+  @apply w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2;
+}
+
+.textarea-bordered {
+  @apply border-gray-300 focus:border-primary focus:ring-primary;
+}
+
+.avatar {
+  @apply inline-block;
+}
+
+.btm-nav {
+  @apply fixed bottom-0 left-0 right-0 flex bg-white;
+}
+
+.btm-nav button {
+  @apply flex-1 py-4;
+}

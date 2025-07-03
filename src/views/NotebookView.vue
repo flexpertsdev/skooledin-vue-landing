@@ -1,5 +1,9 @@
 <script setup>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+const goBack = () => router.push('/dashboard')
 
 const notes = ref([
   {
@@ -52,16 +56,30 @@ const addNote = () => {
 </script>
 
 <template>
-  <div class="p-4 max-w-2xl mx-auto">
-    <div class="flex justify-between items-center mb-4">
-      <h2 class="text-2xl font-bold">My Notebook</h2>
-      <button @click="showNewNote = true" class="btn btn-primary btn-sm">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-        </svg>
-        New Note
-      </button>
+  <div class="min-h-screen bg-base-100">
+    <!-- Navigation Header -->
+    <div class="navbar bg-base-100 shadow-sm border-b border-base-300 sticky top-0 z-50">
+      <div class="navbar-start">
+        <button @click="goBack" class="btn btn-ghost btn-circle">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+      </div>
+      <div class="navbar-center">
+        <a class="btn btn-ghost text-xl">Notebook</a>
+      </div>
+      <div class="navbar-end">
+        <button @click="showNewNote = true" class="btn btn-primary btn-sm btn-circle">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+          </svg>
+        </button>
+      </div>
     </div>
+    
+    <!-- Content -->
+    <div class="p-4 max-w-2xl mx-auto">
     
     <!-- New Note Modal -->
     <div v-if="showNewNote" class="modal modal-open">
@@ -140,6 +158,7 @@ const addNote = () => {
           </div>
         </div>
       </div>
+    </div>
     </div>
   </div>
 </template>

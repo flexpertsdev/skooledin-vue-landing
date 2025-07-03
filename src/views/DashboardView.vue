@@ -1,26 +1,17 @@
 <script setup>
-import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import Feed from '../components/Feed.vue'
-import Chat from '../components/Chat.vue'
-import Notebook from '../components/Notebook.vue'
 
 const router = useRouter()
-const activeTab = ref('feed')
+
+const navigateTo = (route) => {
+  router.push(route)
+}
 
 const tabs = [
-  { id: 'feed', icon: '🏠', component: Feed },
-  { id: 'chat', icon: '💬', component: Chat },
-  { id: 'notebook', icon: '📝', component: Notebook }
+  { id: 'feed', route: '/feed', icon: '🏠', label: 'Feed' },
+  { id: 'chat', route: '/chat', icon: '💬', label: 'Chat' },
+  { id: 'notebook', route: '/notebook', icon: '📝', label: 'Notebook' }
 ]
-
-const currentComponent = ref(Feed)
-
-const switchTab = (tabId) => {
-  activeTab.value = tabId
-  const tab = tabs.find(t => t.id === tabId)
-  currentComponent.value = tab.component
-}
 
 const goToSettings = () => {
   router.push('/settings')
@@ -28,7 +19,7 @@ const goToSettings = () => {
 </script>
 
 <template>
-  <div class="h-screen flex flex-col bg-base-100">
+  <div class="min-h-screen bg-base-100">
     <!-- Top App Bar -->
     <div class="navbar bg-base-100 shadow-sm border-b border-base-300">
       <div class="navbar-start">
@@ -44,35 +35,27 @@ const goToSettings = () => {
       </div>
     </div>
 
-    <!-- Main Content Area -->
-    <div class="flex-1 overflow-y-auto pb-16">
-      <component :is="currentComponent" />
-    </div>
-
-    <!-- Bottom Dock Navigation -->
-    <div class="btm-nav btm-nav-md bg-base-200 border-t border-base-300">
-      <button 
-        v-for="tab in tabs" 
-        :key="tab.id"
-        @click="switchTab(tab.id)"
-        :class="['transition-all', activeTab === tab.id ? 'active' : '']"
-      >
-        <span class="text-2xl">{{ tab.icon }}</span>
-      </button>
+    <!-- Dashboard Content -->
+    <div class="flex flex-col items-center justify-center p-8">
+      <h1 class="text-3xl font-bold mb-8">Welcome to Skooledin</h1>
+      <p class="text-base-content/70 mb-12 text-center max-w-md">
+        Choose where you'd like to go:
+      </p>
+      
+      <!-- Navigation Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-4xl">
+        <div 
+          v-for="tab in tabs" 
+          :key="tab.id"
+          @click="navigateTo(tab.route)"
+          class="card bg-base-200 shadow-xl hover:shadow-2xl transition-all cursor-pointer hover:scale-105"
+        >
+          <div class="card-body items-center text-center">
+            <div class="text-6xl mb-4">{{ tab.icon }}</div>
+            <h2 class="card-title">{{ tab.label }}</h2>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
-
-<style scoped>
-.btm-nav button {
-  @apply flex items-center justify-center;
-}
-
-.btm-nav button.active {
-  @apply bg-primary text-primary-content;
-}
-
-.btm-nav button:not(.active) {
-  @apply hover:bg-base-300;
-}
-</style>
